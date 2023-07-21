@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="Darker_grey">#b3b5b7</color>
+    <color name="pink_card_bg">#f0737b</color>
+    <color name="light_green">#669933</color>
+    <color name="darker_grey">#b3b5b7</color>
+    <color name="gray_bg">#e5e7e9</color>
+    <color name="pink_bg">#f0737b</color>
+    <color name="green_bg">#63d2c8</color>
+
 </resources>
