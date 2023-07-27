@@ -7,24 +7,6 @@
     tools:context=".MainActivity">
 
 
-    <ImageView
-        android:id="@+id/icon_location"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_margin="@dimen/dimen_16"
-        android:src="@drawable/location"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/icon_three_dots"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_margin="@dimen/dimen_16"
-        android:src="@drawable/threedots"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"

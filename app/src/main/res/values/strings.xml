@@ -12,4 +12,5 @@
     <string name="open_when_you_are_on_potentially_dangerous_journey">Open when you are on potentially dangerous journey!</string>
     <string name="in_case_of_emergency_keep_telling_members_to_contact_me">In case of emergency, keep telling members to contact me</string>
     <string name="trackmate">TrackMate</string>
+    <string name="list_of_members">List of Members</string>
 </resources>
