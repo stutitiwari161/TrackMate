@@ -13,4 +13,7 @@
     <string name="in_case_of_emergency_keep_telling_members_to_contact_me">In case of emergency, keep telling members to contact me</string>
     <string name="trackmate">TrackMate</string>
     <string name="list_of_members">List of Members</string>
+    <string name="it_s_login_image">It\'s Login Image</string>
+    <string name="continue_with_google">Continue With Google</string>
+    <string name="default_web_client_id_auth">548519924031-hk5bel5i8pqkl4ajhr2p9p5k3t8ht7ch.apps.googleusercontent.com</string>
 </resources>

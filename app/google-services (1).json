@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "548519924031",
+    "project_id": "trackmate-aa1c1",
+    "storage_bucket": "trackmate-aa1c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548519924031:android:9f62d27f7a151b80d4838a",
+        "android_client_info": {
+          "package_name": "com.example.trackmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548519924031-574c2c1gr64dg1454famljvpud2ta90r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trackmate",
+            "certificate_hash": "6b54b0e033e5455b5f22347c5b66eca1e04c4c00"
+          }
+        },
+        {
+          "client_id": "548519924031-hk5bel5i8pqkl4ajhr2p9p5k3t8ht7ch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPklaqgNcoRvBroLCi8LC7TVp0RmdCSLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548519924031-f3jsosl2an8m9sqq60lh33726o3ln7ei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

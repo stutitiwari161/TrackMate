@@ -20,7 +20,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/pink_card"
-        android:elevation="@dimen/dimen_16"
+        app:cardElevation="16dp"
         app:cardBackgroundColor="@color/pink_bg"
         android:layout_margin="16dp"
         app:cardCornerRadius="16dp"
@@ -38,7 +38,7 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@+id/green_card"
+        app:layout_constraintStart_toStartOf="@+id/green_card"
         app:layout_constraintTop_toTopOf="@+id/pink_card"/>
 
     <TextView
@@ -46,8 +46,8 @@
         app:layout_constraintTop_toBottomOf="@id/text_sos"
         app:layout_constraintStart_toStartOf="@id/pink_card"
         android:id="@+id/sos_msg"
-        android:layout_margin="@dimen/dimen_16"
-        android:layout_width="1dp"
+        android:layout_margin="16dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:elevation="16dp"
         android:text="@string/in_case_of_emergency_keep_telling_members_to_contact_me"
@@ -67,9 +67,8 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/green_card"
         app:cardBackgroundColor="@color/green_bg"
-        android:elevation="@dimen/dimen_16"
+        app:cardElevation="16dp"
         android:layout_margin="16dp"
-        android:layout_marginEnd="16dp"
         app:cardCornerRadius="16dp"
         app:layout_constraintTop_toBottomOf="@id/pink_card"
         android:layout_width="match_parent"
@@ -85,7 +84,7 @@
         android:textColor="#FFF"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@+id/green_card"
+        app:layout_constraintStart_toStartOf="@+id/green_card"
         app:layout_constraintTop_toTopOf="@+id/green_card"/>
 
     <TextView
@@ -94,7 +93,7 @@
         app:layout_constraintStart_toStartOf="@id/green_card"
         android:id="@+id/guard_msg"
         android:layout_margin="16dp"
-        android:layout_width="1dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:elevation="16dp"
         android:text="@string/open_when_you_are_on_potentially_dangerous_journey"
@@ -111,11 +110,47 @@
         android:layout_width="96dp"
         android:layout_height="96dp"/>
 
+    <EditText
+        android:id="@+id/invite_mail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Enter Email of whome you want to invite"
+        app:layout_constraintBottom_toBottomOf="@+id/send_invite"
+        app:layout_constraintEnd_toStartOf="@+id/send_invite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/send_invite"/>
 
+    <Button
+        android:id="@+id/send_invite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Invite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/green_card"/>
 
+    <TextView
+        android:id="@+id/your_invites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Your Invites"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/invite_mail"/>
 
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/invite_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/your_invites"
+        tools:listitem="@layout/item_invite_mail" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

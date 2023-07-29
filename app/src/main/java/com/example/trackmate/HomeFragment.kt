@@ -1,6 +1,7 @@
 package com.example.trackmate
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.ContactsContract.*
@@ -9,8 +10,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.trackmate.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,6 +22,8 @@ import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
 
+    lateinit var inviteAdapter :InviteAdapter
+    lateinit var mContext:Context
     private val listContacts:ArrayList<ContactModel> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +31,19 @@ class HomeFragment : Fragment() {
 
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext= context
+    }
+
+    lateinit var binding:FragmentHomeBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        binding=FragmentHomeBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,39 +74,57 @@ class HomeFragment : Fragment() {
 
         val adapter =MemberAdapter(listMembers)
 
-        val recycler = requireView().findViewById<RecyclerView>(R.id.recycler_member)
-        recycler.layoutManager = LinearLayoutManager(requireContext())
-        recycler.adapter=adapter
+
+        binding.recyclerMember.layoutManager = LinearLayoutManager(mContext)
+        binding.recyclerMember.adapter=adapter
 
 
         Log.d("FetchContact89","fetchContact: about to start")
 
         Log.d("FetchContact89","fetchContact: started ${listContacts.size}")
-        val inviteAdapter=InviteAdapter(listContacts)
+        inviteAdapter=InviteAdapter(listContacts)
+        fetchDatabaseContacts()
         Log.d("FetchContact89","fetchContact: now ended")
 
         CoroutineScope(Dispatchers.IO).launch {
-
             Log.d("FetchContact89","fetchContact: Coroutine about to start")
-            listContacts.addAll(fetchContacts())
-            insertDatabaseContacts(listContacts)
-            withContext(Dispatchers.Main){
-                inviteAdapter.notifyDataSetChanged()
-            }
+
+            insertDatabaseContacts(fetchContacts())
 
             Log.d("FetchContact89","fetchContact: coroutine ended ${listContacts.size} ")
         }
 
 
 
-        val inviteRecycler=requireView().findViewById<RecyclerView>(R.id.recycler_invite)
-        inviteRecycler.layoutManager=
-            LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        inviteRecycler.adapter=inviteAdapter
+
+        binding.recyclerInvite.layoutManager=
+            LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false)
+        binding.recyclerInvite.adapter=inviteAdapter
+
+
+
+        binding.iconThreeDots.setOnClickListener {
+
+            SharedPref.putBoolean(prefConstants.IS_USER_LOGGED_IN,false)
+            FirebaseAuth.getInstance().signOut()
+        }
+    }
+
+    private fun fetchDatabaseContacts() {
+        val database = TrackMateDatabase.getDatabase(mContext)
+
+       database.contactDao().getAllContacts().observe(viewLifecycleOwner){
+
+           Log.d("fetchContacts()","fetch contacts from database")
+           listContacts.clear()
+           listContacts.addAll(it)
+
+           inviteAdapter.notifyDataSetChanged()
+       }
     }
 
     private suspend fun insertDatabaseContacts(listContacts: ArrayList<ContactModel>) {
-        val database = TrackMateDatabase.getDatabase(requireContext())
+        val database = TrackMateDatabase.getDatabase(mContext)
         database.contactDao().insertAll(listContacts)
     }
 
